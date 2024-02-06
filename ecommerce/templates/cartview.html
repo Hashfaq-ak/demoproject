@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid">
+    <h4 class="text-center"> Shopping Cart</h4>
+  </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+        <th scope="col"> Check out</th>
+  <th>Total</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in c %}
+    <tr>
+      <td><img src="{{i.product.image.url}} " height="150px" width="150px"></td>
+      <td>{{i.product.name}}</td>
+      <td>Unit Price : {{i.product.price }}<br>
+      Quantity : {{ i.quantity}}</td>
+<td>Total price : {{i.subtotal}}</td>
+      <td>
+          {% if i.quantity < i.product.stock %}
+          <a href="{% url 'cart:addtocart' i.product.name %}"><i class="fa-solid fa-cart-plus" style="color: #000000;"></i>
+      </a> &nbsp;<a href="{% url 'cart:remove' i.product.name %}"><i class="fa-solid fa-cart-arrow-down" style="color: #000000;"></i></a>
+        &nbsp;<a href="{% url 'cart:delete' i.product.name %}"><i class="fa-solid fa-trash-can" style="color: #000000;"></i></a> </td>
+      <td>Total:{{total}}</td>
+        {% else %}
+        <td>&nbsp;<a href="{% url 'cart:remove' i.product.name %}"><i class="fa-solid fa-cart-arrow-down" style="color: #000000;"></i></a>
+        &nbsp;<a href="{% url 'cart:delete' i.product.name %}"><i class="fa-solid fa-trash-can" style="color: #000000;"></i></a> </td>
+        <td><button>Total:{{total}}</td>
+
+  {% endif %}</td>  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'cart:order_form' %}" class="btn btn-dark" >Place order</a>
+<a href="{% url 'shop:category' %}" class="btn btn-dark"  >Continue shopping</a>
+{% endblock %}

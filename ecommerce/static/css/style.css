@@ -1,0 +1,25 @@
+body{
+font-family: 'Josefin Sans', sans-serif;
+font-weight:100;
+font-style: normal;
+background-color: #FAF9F6 ;
+}
+card{
+display:inline-block;
+margin-top: 50px;
+margin-left: 150px;
+width: 300px;
+}
+ .img-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .img-container img {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Hover effect styles */
+    .img-container:hover img {
+        transform: scale(1.1); /* Increase the size on hover */
+    }
